@@ -1,0 +1,20 @@
+Weightbridge system
+
+Able to deploy jar to kind cluster
+Able to intact with docker postgresql db
+
+
+REST service to
+Generate a ticket and store in db
+Update ticket gross weight and update transaction in db
+Update ticket tare weight and cal net weight and update transaction in db
+Update transaction to be finalized and can't be changed.
+Able to return list of weights
+Able to return specific ticket
+
+
+ticket:
+ticket No., date, full, empty, total weight, expire date:time, location code,
+
+
+
