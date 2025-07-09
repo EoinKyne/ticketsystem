@@ -16,5 +16,41 @@ Able to return specific ticket
 ticket:
 ticket No., date, full, empty, total weight, expire date:time, location code,
 
+Done:
+Ticket with Unique UUID, creation date, version,
+Table in postgresql
+docker compose
+Create new ticket, find all tickets, find by id
+Update a ticket for Gross weight, Tare weight, net weight, with datetimes for transactions.
+
+To do
+Divide into ticket and weight docket
+ticket (table), create, (need to add more attributes, location, product, destination, )
+docket (table), update, new docket id gross, tare, net, ticket details (id, location, product, destination)
+
+Net Weight = Gross - tare;
+Enum of In or Out
+In = Gross weight is > Tare
+Out = Gross < Tare
 
 
+Location enum of all locations
+Column completed and ticket cannot be edited
+
+//
+var moment = require('moment');
+pm.globals.set("CurrentDateTime", moment().format('YYYY-MM-DDTHH:mm:ss:SSS'))
+"ticketCreationDateTime": {{$CurrentDateTime}},
+
+var moment = require('moment');
+pm.globals.set("CurrentDateTime", $now())
+
+var moment = require('moment');
+pm.environment.set('currentdatetime', moment());
+
+datetimes
+"2024-09-27 15:53:08.447603"
+"2024-09-27T15:28:25.703+00:00
+
+2024-09-27T15:37:31.335+00:00
+"YYYY-MM-DD'T'HH:mm:ss.SSS+SS:SS

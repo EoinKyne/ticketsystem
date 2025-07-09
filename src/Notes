@@ -1,0 +1,93 @@
+http://localhost:8080/api/ticket/create
+{
+    "location": "D2 X5",
+    "version": 0,
+    "ticketCreationDateTime": "{{currentdate}}"
+}
+
+var moment = require('moment');
+pm.environment.set('currentdate', moment().format("yyyy-MM-DDTHH:mm:ss"));
+
+http://localhost:8080/api/ticket/getall
+
+[
+    {
+        "id": "3fe908db-e80e-4071-97d3-d229b7f3830b",
+        "location": "D2 X5",
+        "ticketCreationDateTime": "2025-07-08T12:30:57.084884",
+        "version": 0,
+        "grossWeight": null,
+        "tareWeight": null,
+        "ticketGrossWeightDateTime": "2025-07-08T12:30:57.084884",
+        "ticketTareWeightDateTime": "2025-07-08T12:30:57.084884"
+    },
+    {
+        "id": "3ff72da2-8357-4701-b266-51413f43a48a",
+        "location": "D2 X5",
+        "ticketCreationDateTime": "2025-07-08T12:31:28.448755",
+        "version": 0,
+        "grossWeight": null,
+        "tareWeight": null,
+        "ticketGrossWeightDateTime": "2025-07-08T12:31:28.448755",
+        "ticketTareWeightDateTime": "2025-07-08T12:31:28.448755"
+    },
+    {
+        "id": "594271bb-5e33-4a46-ad94-29eb572f6f96",
+        "location": "D2 X5",
+        "ticketCreationDateTime": "2025-07-08T12:31:30.352467",
+        "version": 0,
+        "grossWeight": null,
+        "tareWeight": null,
+        "ticketGrossWeightDateTime": "2025-07-08T12:31:30.352467",
+        "ticketTareWeightDateTime": "2025-07-08T12:31:30.352467"
+    },
+    {
+        "id": "a7931f1f-5dac-4480-b623-c79c62a64885",
+        "location": "D2 X5",
+        "ticketCreationDateTime": "2025-07-08T12:31:31.920167",
+        "version": 0,
+        "grossWeight": null,
+        "tareWeight": null,
+        "ticketGrossWeightDateTime": "2025-07-08T12:31:31.920167",
+        "ticketTareWeightDateTime": "2025-07-08T12:31:31.920167"
+    },
+    {
+        "id": "5f69393d-4025-40fb-96f8-877e1082046a",
+        "location": "D2 X5",
+        "ticketCreationDateTime": "2025-07-08T12:31:33.647638",
+        "version": 0,
+        "grossWeight": null,
+        "tareWeight": null,
+        "ticketGrossWeightDateTime": "2025-07-08T12:31:33.647638",
+        "ticketTareWeightDateTime": "2025-07-08T12:31:33.647638"
+    },
+    {
+        "id": "7dd8d15b-e7b8-4eb4-b2cc-08268788c0d7",
+        "location": "D2 X5",
+        "ticketCreationDateTime": "2025-07-08T12:31:35.189272",
+        "version": 0,
+        "grossWeight": null,
+        "tareWeight": null,
+        "ticketGrossWeightDateTime": "2025-07-08T12:31:35.189272",
+        "ticketTareWeightDateTime": "2025-07-08T12:31:35.189272"
+    }
+]
+
+http://localhost:8080/api/ticket/update/grossweight/3fe908db-e80e-4071-97d3-d229b7f3830b
+{
+    "grossWeight": 46.50,
+    "tareWeight": 0,
+    "ticketGrossWeightDateTime": "{{currentdate}}"
+}
+
+http://localhost:8080/api/ticket/update/tareweight/3fe908db-e80e-4071-97d3-d229b7f3830b
+{
+    "grossWeight": 46.50,
+    "tareWeight": 13.50,
+    "ticketTareWeightDateTime": "{{currentdate}}"
+}
+
+
+
+
+http://localhost:8080/api/ticket/get/3fe908db-e80e-4071-97d3-d229b7f3830b

@@ -1,0 +1,72 @@
+{
+  "weightbridgetickets": [{
+    "id": "946901be-cb7b-4e25-9dd2-2c233765694b",
+    "location": "D2 X5",
+    "ticketCreationDateTime": "2024-09-27T15:53:08.447603",
+    "version": 1,
+    "grossWeight": 46,
+    "tareWeight": null,
+    "ticketGrossWeightDateTime": "2024-09-27T15:53:08.447603",
+    "ticketTareWeightDateTime": "2024-09-27T15:53:08.447603"
+  },
+  {
+    "id": "e01d09aa-8a55-4b6c-8940-7667483d287c",
+    "location": "D2 X5",
+    "ticketCreationDateTime": null,
+    "version": 1,
+    "grossWeight": 46,
+    "tareWeight": null,
+    "ticketGrossWeightDateTime": "2024-09-27T16:04:01.492714",
+    "ticketTareWeightDateTime": "2024-09-27T16:04:01.492714"
+  },
+  {
+    "id": "75b119eb-e3bf-43a8-8f4a-608114c624c1",
+    "location": "D2 X5",
+    "ticketCreationDateTime": null,
+    "version": 0,
+    "grossWeight": null,
+    "tareWeight": null,
+    "ticketGrossWeightDateTime": "2024-09-27T16:04:26.320315",
+    "ticketTareWeightDateTime": "2024-09-27T16:04:26.320315"
+  },
+  {
+    "id": "17981249-f156-4b0c-8f67-33193fbfe5d3",
+    "location": "D2 X5",
+    "ticketCreationDateTime": "2024-09-27T17:11:18.096651",
+    "version": 2,
+    "grossWeight": 47,
+    "tareWeight": null,
+    "ticketGrossWeightDateTime": "2024-09-27T17:11:18.096651",
+    "ticketTareWeightDateTime": "2024-09-27T17:11:18.096651"
+  },
+  {
+    "id": "0353d747-92b2-465c-bff7-fce2d4aa23a1",
+    "location": "D2 X5",
+    "ticketCreationDateTime": "2024-10-01T11:05:00.604073",
+    "version": 0,
+    "grossWeight": null,
+    "tareWeight": null,
+    "ticketGrossWeightDateTime": "2024-10-01T11:05:00.604073",
+    "ticketTareWeightDateTime": "2024-10-01T11:05:00.604073"
+  },
+  {
+    "id": "3b60dc17-b00c-4678-aca9-564551e8d2cd",
+    "location": "D2 X5",
+    "ticketCreationDateTime": "2024-10-01T11:05:04.664795",
+    "version": 0,
+    "grossWeight": null,
+    "tareWeight": null,
+    "ticketGrossWeightDateTime": "2024-10-01T11:05:04.664795",
+    "ticketTareWeightDateTime": "2024-10-01T11:05:04.664795"
+  },
+  {
+    "id": "511079a8-d627-4d14-8918-8812e5f0912d",
+    "location": "D2 X5",
+    "ticketCreationDateTime": "2024-10-01T11:07:54.841393",
+    "version": 1,
+    "grossWeight": 47,
+    "tareWeight": null,
+    "ticketGrossWeightDateTime": "2024-10-01T11:07:54.841393",
+    "ticketTareWeightDateTime": "2024-10-01T11:07:54.841393"
+  }
+  ]}
