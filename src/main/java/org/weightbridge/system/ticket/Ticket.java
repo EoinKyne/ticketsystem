@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotEmpty;
 import org.hibernate.annotations.UuidGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.weightbridge.system.weightticket.WeightTicket;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -28,26 +29,24 @@ public class Ticket {
     private LocalDateTime ticketCreationDateTime;
     @Version
     private Integer version = 0;
-    private BigDecimal grossWeight;
-    private BigDecimal tareWeight;
-    private BigDecimal nettWeight;
-    private LocalDateTime ticketGrossWeightDateTime;
-    private LocalDateTime ticketTareWeightDateTime;
+
+    private String product;
+    private String destination;
+//    @OneToOne()
+//    @JoinColumn(name = "weightTicket_id")
+//    private WeightTicket weightTicket;
 
     public Ticket(){
 
     }
 
-    public Ticket(UUID id,  String location, LocalDateTime ticketCreationDateTime, BigDecimal grossWeight, LocalDateTime ticketGrossWeightDateTime,
-                  BigDecimal tareWeight, LocalDateTime ticketTareWeightDateTime, BigDecimal nettWeight, Integer version) {
+    public Ticket(UUID id,  String location, LocalDateTime ticketCreationDateTime,  String product, String destination,
+                   Integer version) {
         this.id = id;
         this.location = location;
         this.ticketCreationDateTime = ticketCreationDateTime;
-        this.grossWeight = grossWeight;
-        this.ticketGrossWeightDateTime = ticketGrossWeightDateTime;
-        this.tareWeight = tareWeight;
-        this.ticketTareWeightDateTime = ticketTareWeightDateTime;
-        this.nettWeight = nettWeight;
+        this.product = product;
+        this.destination = destination;
         this.version = version;
     }
 
@@ -77,53 +76,28 @@ public class Ticket {
         this.ticketCreationDateTime = ticketCreationDateTime;
     }
 
+    public String getProduct() {
+        return product;
+    }
+
+    public void setProduct(String product) {
+        this.product = product;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
     public Integer getVersion() {
         return version;
     }
 
     public void setVersion(Integer version) {
         this.version = version;
-    }
-
-
-    public BigDecimal getGrossWeight() {
-        return grossWeight;
-    }
-
-    public void setGrossWeight(BigDecimal grossWeight) {
-        this.grossWeight = grossWeight;
-    }
-
-    public BigDecimal getTareWeight() {
-        return tareWeight;
-    }
-
-    public void setTareWeight(BigDecimal tareWeight) {
-        this.tareWeight = tareWeight;
-    }
-
-    public LocalDateTime getTicketGrossWeightDateTime() {
-        return ticketGrossWeightDateTime;
-    }
-
-    public void setTicketGrossWeightDateTime(LocalDateTime ticketGrossWeightDateTime) {
-        this.ticketGrossWeightDateTime = ticketGrossWeightDateTime;
-    }
-
-    public LocalDateTime getTicketTareWeightDateTime() {
-        return ticketTareWeightDateTime;
-    }
-
-    public void setTicketTareWeightDateTime(LocalDateTime ticketTareWeightDateTime) {
-        this.ticketTareWeightDateTime = ticketTareWeightDateTime;
-    }
-
-    public BigDecimal getNettWeight() {
-        return nettWeight;
-    }
-
-    public void setNettWeight(BigDecimal grossWeight, BigDecimal tareWeight) {
-        this.nettWeight = (this.grossWeight.subtract(this.tareWeight));
     }
 
     @Override
@@ -133,11 +107,6 @@ public class Ticket {
                 ", location='" + location + '\'' +
                 ", ticketCreationDateTime=" + ticketCreationDateTime +
                 ", version=" + version +
-                ", grossWeight=" + grossWeight +
-                ", tareWeight=" + tareWeight +
-                ", nettWeight=" + nettWeight +
-                ", grossWeightDateTime=" + ticketGrossWeightDateTime +
-                ", tareWeightDateTime=" + ticketTareWeightDateTime +
                 '}';
     }
 }

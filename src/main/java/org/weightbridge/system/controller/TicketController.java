@@ -55,11 +55,8 @@ public class TicketController {
             Ticket updatedTicket = new Ticket(existing.get().getId(),
                     existing.get().getLocation(),
                     existing.get().getTicketCreationDateTime(),
-                    ticket.getGrossWeight(),
-                    ticket.getTicketGrossWeightDateTime(),
-                    ticket.getTareWeight(),
-                    ticket.getTicketTareWeightDateTime(),
-                    ticket.getNettWeight(),
+                    existing.get().getProduct(),
+                    existing.get().getDestination(),
                     existing.get().getVersion());
             LOG.info("Updated ticket {} ", updatedTicket);
             ticketRepository.save(updatedTicket);
@@ -77,16 +74,11 @@ public class TicketController {
             Ticket updatedTicket = new Ticket(existing.get().getId(),
                     existing.get().getLocation(),
                     ticket.getTicketCreationDateTime(),
-                    existing.get().getGrossWeight(),
-                    existing.get().getTicketGrossWeightDateTime(),
-                    ticket.getTareWeight(),
-                    ticket.getTicketTareWeightDateTime(),
-                    ticket.getNettWeight(),
+                    existing.get().getProduct(),
+                    existing.get().getDestination(),
                     existing.get().getVersion());
             LOG.info("Updated ticket {} ", updatedTicket);
             LOG.info("Existing ticket {} ", existing);
-            updatedTicket.setNettWeight(existing.get().getGrossWeight(), ticket.getTareWeight());
-            updatedTicket.getNettWeight();
             ticketRepository.save(updatedTicket);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Ticket {} not found. " + id);

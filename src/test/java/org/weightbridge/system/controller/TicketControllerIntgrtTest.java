@@ -61,10 +61,8 @@ public class TicketControllerIntgrtTest {
 
     @Test
     void shouldFindAllTickets(){
-        ticketRepositoryInt.save(new Ticket(null, "r2 d2", LocalDateTime.now(), BigDecimal.valueOf(0.00), LocalDateTime.now(),
-                BigDecimal.valueOf(0.00), LocalDateTime.now(), BigDecimal.valueOf(0.00), 0));
-        ticketRepositoryInt.save(new Ticket(null, "r3 d4", LocalDateTime.now(), BigDecimal.valueOf(0.00), LocalDateTime.now(),
-                BigDecimal.valueOf(0.00), LocalDateTime.now(), BigDecimal.valueOf(0.00), 0));
+        ticketRepositoryInt.save(new Ticket(null, "r2 d2", LocalDateTime.now(), "egss", "Antarctica", 0));
+        ticketRepositoryInt.save(new Ticket(null, "r3 d4", LocalDateTime.now(), "snow", "Greenland", 0));
         ticketRepositoryInt.flush();
         long transactions = ticketRepositoryInt.count();
         LOG.info("Ticket repo {}", ticketRepositoryInt.findAll());
@@ -80,8 +78,7 @@ public class TicketControllerIntgrtTest {
 
     @Test
     void shouldFindTicketById() {
-        Ticket ticket = new Ticket(null, "r4 d2", LocalDateTime.now(), BigDecimal.valueOf(46.00), LocalDateTime.now(),
-                BigDecimal.valueOf(0.00), LocalDateTime.now(), BigDecimal.valueOf(0.00), 0);
+        Ticket ticket = new Ticket(null, "r4 d2", LocalDateTime.now(), "Snails", "Wales", 0);
         ticketRepositoryInt.save(ticket);
         ticketRepositoryInt.flush();
         //LOG.info("Ticket repo {}", ticketRepositoryInt.findAll().get(0));
@@ -97,16 +94,14 @@ public class TicketControllerIntgrtTest {
         assertAll(
                 //() -> assertEquals(ticketIdFromDb, ticket1.getId())
                 () -> assertEquals("r4 d2", ticket1.getLocation()),
-                () -> assertEquals(BigDecimal.valueOf(46), ticket1.getGrossWeight()),
-                () -> assertEquals(BigDecimal.valueOf(0), ticket1.getTareWeight()),
-                () -> assertEquals(2, ticket1.getVersion())
+                () -> assertEquals("Snails", ticket1.getProduct()),
+                () -> assertEquals("Wales", ticket1.getDestination())
         );
     }
 
     @Test
     void shouldFindAndUpdateGrossweightOfTicket(){
-        Ticket ticket = new Ticket(null, "r4 d2", LocalDateTime.now(), BigDecimal.valueOf(46.00), LocalDateTime.now(),
-                BigDecimal.valueOf(0.00), LocalDateTime.now(), BigDecimal.valueOf(0.00), 2);
+        Ticket ticket = new Ticket(null, "r4 d2", LocalDateTime.now(), "Snails", "Wales", 2);
         ticketRepositoryInt.save(ticket);
         ticketRepositoryInt.flush();
         List<Ticket> ticketList = new ArrayList<>();
@@ -114,7 +109,7 @@ public class TicketControllerIntgrtTest {
         UUID ticketIdFromDb = ticketList.get(0).getId();
         LOG.info("/api/ticket/get/"+ticketIdFromDb);
         Ticket ticket1 = restClient.get().uri("/api/ticket/get/"+ticketIdFromDb).retrieve().body(Ticket.class);
-        LOG.info("Ticket 1 retieved by restClient {} ", ticket1);
+        LOG.info("Ticket 1 retrieved by restClient {} ", ticket1);
         ResponseEntity<Void> updatedTicket = restClient.patch()
                 .uri("/api/ticket/update/grossweight/"+ticketIdFromDb)
                 .body(ticket1)

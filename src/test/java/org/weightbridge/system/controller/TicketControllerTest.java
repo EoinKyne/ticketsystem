@@ -45,20 +45,15 @@ class TicketControllerTest {
 
     @BeforeEach
     void setUp(){
-        ticketList.add(new Ticket (UUID.fromString("2ce54db4-7e9d-45b0-947d-8c4fc1fcc080"), "D1 X1", LocalDateTime.now(), new BigDecimal(0.00),
-                LocalDateTime.now(), BigDecimal.valueOf(0.000), LocalDateTime.now(), BigDecimal.valueOf(0.00),  0));
-        ticketList.add(new Ticket (UUID.fromString("30d4b3d9-d91e-4f2a-96c8-968854dc4ecf"), "D2 X1", LocalDateTime.now(), new BigDecimal(0.00), LocalDateTime.now(),
-                BigDecimal.valueOf(0.000), LocalDateTime.now(), BigDecimal.valueOf(0.00),  0));
-        ticketList.add(new Ticket (UUID.fromString("749ccd08-61d0-42cb-aa51-e4dea6a7d97d"), "D3 X2", LocalDateTime.now(), new BigDecimal(0.00),
-                LocalDateTime.now(), BigDecimal.valueOf(0.000), LocalDateTime.now(), BigDecimal.valueOf(0.00), 0));
+        ticketList.add(new Ticket (UUID.fromString("2ce54db4-7e9d-45b0-947d-8c4fc1fcc080"), "D1 X1", LocalDateTime.now(), "Apples", "Europe", 0));
+        ticketList.add(new Ticket (UUID.fromString("30d4b3d9-d91e-4f2a-96c8-968854dc4ecf"), "D2 X1", LocalDateTime.now(), "Oranges", "USA",  0));
+        ticketList.add(new Ticket (UUID.fromString("749ccd08-61d0-42cb-aa51-e4dea6a7d97d"), "D3 X2", LocalDateTime.now(), "Pears", "Australia", 0));
     }
 
     @Test
     void shouldCreateANewTicket() throws Exception{
-        Ticket newTicket = new Ticket (UUID.fromString("2ce54db4-7e9d-45b0-947d-8c4fc1fcc180"), "D1 X1", LocalDateTime.now(), new BigDecimal(0.00), LocalDateTime.now(),
-                BigDecimal.valueOf(0.000), LocalDateTime.now(), BigDecimal.valueOf(0.00), 0);
+        Ticket newTicket = new Ticket (UUID.fromString("2ce54db4-7e9d-45b0-947d-8c4fc1fcc180"), "D1 X1", LocalDateTime.now(), "Bananas", "South America", 0);
         LOG.info("New ticket {} ", newTicket);
-        LOG.info("Big decimal {} ", newTicket.getGrossWeight());
         mvc.perform(post("/api/ticket/create")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(newTicket))).andExpect(status().isCreated());
@@ -66,8 +61,7 @@ class TicketControllerTest {
 
     //
     void shouldNotCreateTheSameStudentWithUsedIdNumber() throws Exception{
-        Ticket newTicket =new Ticket(UUID.fromString("2ce54db4-7e9d-45b0-947d-8c4fc1fcc080"), "D2 X2", LocalDateTime.now(), new BigDecimal(0.00), LocalDateTime.now(),
-                BigDecimal.valueOf(0.000), LocalDateTime.now(), BigDecimal.valueOf(0.00), 0);
+        Ticket newTicket =new Ticket(UUID.fromString("2ce54db4-7e9d-45b0-947d-8c4fc1fcc080"), "D2 X2", LocalDateTime.now(), "Bananas", "South America", 0);
         mvc.perform(post("/api/ticket/create")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(newTicket))).andExpect(status().isConflict());
@@ -93,35 +87,6 @@ class TicketControllerTest {
         mvc.perform(get("/api/ticket/get/2ce54db4-7e9d-45b0-947d-8c4fc1fcc080")).andExpect(status().isNotFound());
     }
 
-    @Test
-    void shouldUpdateGrossWeightByTicketId() throws Exception {
-        LOG.info("Test update ticket for gross Weight");
-        Ticket updatedTicket = new Ticket (UUID.fromString("749ccd08-61d0-42cb-aa51-e4dea6a7d97d"), "D3 X2", LocalDateTime.now(), BigDecimal.valueOf(46.000), LocalDateTime.now(),
-                BigDecimal.valueOf(0.000), LocalDateTime.now(), BigDecimal.valueOf(0.00), 1);
-        LOG.info("Updated ticket {} ", updatedTicket);
-        Ticket ticket = ticketList.get(2);
-        LOG.info("Found ticket {} ", ticket);
-        when(ticketRepositoryInt.findById(ArgumentMatchers.any(UUID.class))).thenReturn(Optional.of(ticket));
-        when(ticketRepositoryInt.save(updatedTicket)).thenReturn(updatedTicket);
-        LOG.info("Updated: {} ", updatedTicket);
-        mvc.perform(patch("/api/ticket/update/grossweight/749ccd08-61d0-42cb-aa51-e4dea6a7d97d")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(updatedTicket)))
-                .andExpect(status().isNoContent());
-    }
 
-    @Test
-    void shouldUpdateTareWeightByTicketId() throws Exception {
-        LOG.info("Test update ticket for tare weight");
-        Ticket updatedTicket = new Ticket(UUID.fromString("749ccd08-61d0-42cb-aa51-e4dea6a7d97d"), "D3 X2", LocalDateTime.now(), BigDecimal.valueOf(46.000), LocalDateTime.now(),
-                BigDecimal.valueOf(16.000), LocalDateTime.now(), BigDecimal.valueOf(30.00), 2);
-        Ticket ticket = ticketList.get(2);
-        when(ticketRepositoryInt.findById(ArgumentMatchers.any(UUID.class))).thenReturn(Optional.of(ticket));
-        when(ticketRepositoryInt.save(updatedTicket)).thenReturn(updatedTicket);
-        mvc.perform(patch("/api/ticket/update/tareweight/749ccd08-61d0-42cb-aa51-e4dea6a7d97d")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(updatedTicket)))
-                .andExpect(status().isNoContent());
-    }
 
 }
