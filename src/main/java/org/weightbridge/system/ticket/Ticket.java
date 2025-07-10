@@ -32,7 +32,7 @@ public class Ticket {
 
     private String product;
     private String destination;
-//    @OneToOne()
+//    @OneToOne(mappedBy = "ticket", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    @JoinColumn(name = "weightTicket_id")
 //    private WeightTicket weightTicket;
 
