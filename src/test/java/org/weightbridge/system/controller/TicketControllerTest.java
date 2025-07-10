@@ -1,6 +1,7 @@
 package org.weightbridge.system.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
@@ -59,7 +60,7 @@ class TicketControllerTest {
                 .content(objectMapper.writeValueAsString(newTicket))).andExpect(status().isCreated());
     }
 
-    //
+    @Ignore
     void shouldNotCreateTheSameStudentWithUsedIdNumber() throws Exception{
         Ticket newTicket =new Ticket(UUID.fromString("2ce54db4-7e9d-45b0-947d-8c4fc1fcc080"), "D2 X2", LocalDateTime.now(), "Bananas", "South America", 0);
         mvc.perform(post("/api/ticket/create")
@@ -86,7 +87,4 @@ class TicketControllerTest {
     void shouldThrowANotFoundExceptionIfIdDoesNotExist() throws Exception {
         mvc.perform(get("/api/ticket/get/2ce54db4-7e9d-45b0-947d-8c4fc1fcc080")).andExpect(status().isNotFound());
     }
-
-
-
 }
