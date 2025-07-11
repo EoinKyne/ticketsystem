@@ -1,15 +1,10 @@
 package org.weightbridge.system.ticket;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import org.hibernate.annotations.UuidGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.weightbridge.system.weightticket.WeightTicket;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -105,6 +100,8 @@ public class Ticket {
         return "Ticket{" +
                 "id=" + id +
                 ", location='" + location + '\'' +
+                ", product=" + product +
+                ", destination=" + destination +
                 ", ticketCreationDateTime=" + ticketCreationDateTime +
                 ", version=" + version +
                 '}';
