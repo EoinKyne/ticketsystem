@@ -112,13 +112,13 @@ public class WeightTicket {
     public String toString() {
         return "WeightTicket{" +
                 "id=" + id +
-                ", version=" + version +
                 ", ticketNumber=" + ticketNumber +
                 ", grossWeight=" + grossWeight +
-                ", tareWeight=" + tareWeight +
-                ", nettWeight=" + nettWeight +
                 ", ticketGrossWeightDateTime=" + ticketGrossWeightDateTime +
+                ", tareWeight=" + tareWeight +
                 ", ticketTareWeightDateTime=" + ticketTareWeightDateTime +
+                ", nettWeight=" + nettWeight +
+                ", version=" + version +
                 '}';
     }
 }

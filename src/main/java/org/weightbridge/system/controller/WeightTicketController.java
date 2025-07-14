@@ -65,10 +65,10 @@ public class WeightTicketController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PatchMapping("/update/tareweight/{id}")
-    public void updateTareWeightById(@RequestBody WeightTicket weightTicket, @PathVariable UUID id){
-        LOG.info("Update weight ticket {} with gross weight {} ", id);
-        Optional<WeightTicket> existing = weightTicketRepository.findById(id);
+    @PatchMapping("/update/secondweight/{ticketNumber}")
+    public void updateSecondWeightById(@RequestBody WeightTicket weightTicket, @PathVariable UUID ticketNumber){
+        LOG.info("Update weight ticket {} with gross weight {} ", ticketNumber);
+        Optional<WeightTicket> existing = weightTicketRepository.findByTicketNumber(ticketNumber);
         if(existing.isPresent()){
             WeightTicket updatedTicket = new WeightTicket(existing.get().getId(),
                     existing.get().getTicketNumber(),
@@ -83,7 +83,7 @@ public class WeightTicketController {
             updatedTicket.getNettWeight();
             weightTicketRepository.save(updatedTicket);
         }else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Ticket {} not found. " + id);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Ticket {} not found. " + ticketNumber);
         }
     }
 }
