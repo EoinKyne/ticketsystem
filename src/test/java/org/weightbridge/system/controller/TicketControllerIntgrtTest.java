@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestClient;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
@@ -58,12 +59,25 @@ public class TicketControllerIntgrtTest {
     }
 
     @Test
+    void shouldCreateNewTicket(){
+        LOG.info("Test should create new ticket");
+        Ticket newTicket = new Ticket(null, "rr r5", LocalDateTime.now(), "ice", "Iceland", 0 );
+        ResponseEntity<Void> ticket = restClient.post()
+                .uri("/api/ticket/create")
+                .body(newTicket)
+                .retrieve()
+                .toBodilessEntity();
+        assertEquals(201, ticket.getStatusCode().value());
+    }
+
+    @Test
     void shouldFindAllTickets(){
         LOG.info("Test should find all tickets");
         ticketRepositoryInt.save(new Ticket(null, "r2 d2", LocalDateTime.now(), "eggs", "Antarctica", 0));
         ticketRepositoryInt.save(new Ticket(null, "r3 d4", LocalDateTime.now(), "snow", "Greenland", 0));
         ticketRepositoryInt.flush();
         long transactions = ticketRepositoryInt.count();
+        LOG.info("Transaction count: ", transactions);
 
         List<Ticket> ticketList = restClient.get()
                 .uri("/api/ticket/getall")
@@ -71,7 +85,7 @@ public class TicketControllerIntgrtTest {
                 .body(new ParameterizedTypeReference<>(){
                 });
         LOG.debug("Ticket List {} : ", ticketList);
-        assertEquals(transactions, ticketRepositoryInt.count());
+        assertEquals(ticketList.size(), ticketRepositoryInt.count());
     }
 
     @Test
