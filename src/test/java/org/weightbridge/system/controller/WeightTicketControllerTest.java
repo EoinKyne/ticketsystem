@@ -96,14 +96,14 @@ class WeightTicketControllerTest {
     }
 
     @Test
-    void shouldUpdateTareWeightByTicketId() throws Exception {
+    void shouldUpdateSecondWeightByTicketId() throws Exception {
         LOG.info("Test update weight ticket for tare weight");
-        WeightTicket updatedWeightTicket = new WeightTicket(UUID.fromString("2ce54db4-7e9d-45b0-947d-8c4fc1fcc080"), UUID.fromString("2ce54db4-7e9d-45b0-947d-8c4fc1fcc080"), BigDecimal.valueOf(46.000), LocalDateTime.now(),
+        WeightTicket updatedWeightTicket = new WeightTicket(UUID.fromString("2ce54db4-7e9d-45b0-947d-8c4fc1fcc080"), UUID.fromString("749ccd08-61d0-42cb-aa51-e4dea6a7d97d"), BigDecimal.valueOf(46.000), LocalDateTime.now(),
                 BigDecimal.valueOf(16.000), LocalDateTime.now(), BigDecimal.valueOf(30.00), 1);
-        WeightTicket weightTicket = weightTicketList.get(0);
-        when(weightTicketRepository.findById(ArgumentMatchers.any(UUID.class))).thenReturn(Optional.of(weightTicket));
+        WeightTicket weightTicket = weightTicketList.get(2);
+        when(weightTicketRepository.findByTicketNumber(ArgumentMatchers.any(UUID.class))).thenReturn(Optional.of(weightTicket));
         when(weightTicketRepository.save(updatedWeightTicket)).thenReturn(updatedWeightTicket);
-        mvc.perform(patch("/api/weightticket/update/tareweight/749ccd08-61d0-42cb-aa51-e4dea6a7d97d")
+        mvc.perform(patch("/api/weightticket/update/secondweight/749ccd08-61d0-42cb-aa51-e4dea6a7d97d")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(updatedWeightTicket)))
                 .andExpect(status().isNoContent());
